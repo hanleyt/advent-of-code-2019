@@ -14,8 +14,6 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
-
-//    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 }
 
 tasks.withType<Test> {
