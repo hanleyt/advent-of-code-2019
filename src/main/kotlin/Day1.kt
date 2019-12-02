@@ -1,3 +1,5 @@
+import java.io.File
+
 object Day1 {
 
     fun getFuelRequiredForMass(mass: Int): Int {
@@ -13,3 +15,6 @@ object Day1 {
         }
     }
 }
+
+fun readFileAsLines(fileName: String): List<String>
+    = File(fileName).useLines { it.toList() }

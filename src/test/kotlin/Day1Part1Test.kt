@@ -1,3 +1,4 @@
+import Day1.getFuelRequiredForMass
 import io.kotlintest.data.forall
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
@@ -15,14 +16,14 @@ class Day1Part1Test : StringSpec({
             row(1969, 654),
             row(100756, 33583)
         ) { mass, fuelRequired ->
-            Day1.getFuelRequiredForMass(mass) shouldBe fuelRequired
+            getFuelRequiredForMass(mass) shouldBe fuelRequired
         }
     }
 
     "sum of test input" {
         val totalFuelRequired = readFileAsLines(INPUT_FILE_PATH)
             .map { it.toInt() }
-            .sumBy { Day1.getFuelRequiredForMass(it) }
+            .sumBy { getFuelRequiredForMass(it) }
 
         totalFuelRequired shouldBe 3399947
     }
@@ -50,5 +51,10 @@ class Day1Part2Test : StringSpec({
     }
 })
 
-fun readFileAsLines(fileName: String): List<String>
-    = File(fileName).useLines { it.toList() }
+
+
+
+private fun fuels(weight: Int): Int =
+    generateSequence(getFuelRequiredForMass(weight), ::getFuelRequiredForMass)
+        .takeWhile { it > 0 }
+        .sum()
